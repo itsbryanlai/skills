@@ -23,15 +23,13 @@ front of the tool, but they don't grant capabilities.
 
 | Skill | Claude Code | Cursor | Windsurf | Copilot |
 |---|---|---|---|---|
-| [eval-driven-prompt-tuning](skills/eval-driven-prompt-tuning) | ✅ | ✅ | ✅ | not evaluated |
-| [model-feasibility-study](skills/model-feasibility-study) | ✅ | ✅ | ✅ | not evaluated |
+| [eval-driven-prompt-tuning](skills/eval-driven-prompt-tuning) | ✅ | ✅ | not evaluated | not evaluated |
+| [model-feasibility-study](skills/model-feasibility-study) | ✅ | ✅ | not evaluated | not evaluated |
 
-Both skills are plain analysis/reporting workflows with no dependency on a specific tool's
-subagents, slash commands, or browser control, so they're expected to work anywhere the file is
-loaded. Copilot is left unmarked because it hasn't been tried — that's a gap in testing, not a
-claim that it fails. The table only covers the tools actually tried; other well-known AI coding
-tools (OpenAI's Codex, xAI's Grok, etc.) aren't listed simply because they're untested, not because
-they're known to be incompatible.
+Windsurf and Copilot are left unmarked because they haven't been tried — that's a gap in testing,
+not a claim that either fails. The table only covers the tools actually tried; other well-known AI
+coding tools (OpenAI's Codex, xAI's Grok, etc.) aren't listed simply because they're untested, not
+because they're known to be incompatible.
 
 ## Use it
 
