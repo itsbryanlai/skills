@@ -15,6 +15,24 @@ other tool gets a thin adapter generated from that file, not a rewrite.
 usable, but don't treat it as final. Each skill's own README and its SKILL.md's status line say so
 too.
 
+## Tool compatibility
+
+Having the file in the right place isn't enough — a skill also has to work with what that tool can
+actually do. This is separate from the adapter setup below: the adapters get the instructions in
+front of the tool, but they don't grant capabilities.
+
+| Skill | Claude Code | Cursor | Windsurf | Copilot |
+|---|---|---|---|---|
+| [eval-driven-prompt-tuning](skills/eval-driven-prompt-tuning) | ✅ | ✅ | ✅ | not evaluated |
+| [model-feasibility-study](skills/model-feasibility-study) | ✅ | ✅ | ✅ | not evaluated |
+
+Both skills are plain analysis/reporting workflows with no dependency on a specific tool's
+subagents, slash commands, or browser control, so they're expected to work anywhere the file is
+loaded. Copilot is left unmarked because it hasn't been tried — that's a gap in testing, not a
+claim that it fails. The table only covers the tools actually tried; other well-known AI coding
+tools (OpenAI's Codex, xAI's Grok, etc.) aren't listed simply because they're untested, not because
+they're known to be incompatible.
+
 ## Use it
 
 **Claude Code** — this is the canonical format already. Either:
