@@ -1,0 +1,6 @@
+---
+description: Improve an LLM pipeline's accuracy against a labelled evaluation set when you may change prompts but not models or code. Use when given a target metric, a fixed dataset, a baseline to beat, and a list of ranked defects — or whenever asked to raise extraction/classification/mapping accuracy without retraining. Covers validating the scoring harness, diagnosing from existing run artifacts before spending API calls, measuring run-to-run variance, and handling labels that turn out to be wrong.
+alwaysApply: false
+---
+
+See @skills/eval-driven-prompt-tuning/SKILL.md for the full instructions.
