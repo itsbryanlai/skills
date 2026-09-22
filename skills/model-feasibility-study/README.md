@@ -1,6 +1,6 @@
 # model-feasibility-study
 
-**Status: Beta** — actively being tested against real studies, expect the steps to be refined.
+**Status: Stable** — run against enough real studies that the phases are proven, though they can still be refined.
 
 Run an empirical feasibility study comparing candidate models, libraries, or approaches against a
 decision someone has to make: problem framing, dataset provenance, controlled comparison,

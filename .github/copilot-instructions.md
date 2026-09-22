@@ -218,7 +218,7 @@ Run an empirical feasibility study comparing candidate models, libraries or appr
 
 # Model feasibility study
 
-> **Status: Beta.** Still being tested against real studies — the steps are solid but expect refinements.
+> **Status: Stable.** Run against enough real studies that the phases are proven — still expect refinements.
 
 A study is evidence for a **decision**, not a benchmark table. Every phase
 below exists to make one recommendation defensible in front of whoever has to

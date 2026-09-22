@@ -9,11 +9,12 @@ other tool gets a thin adapter generated from that file, not a rewrite.
 | Skill | Status | What it's for |
 |---|---|---|
 | [eval-driven-prompt-tuning](skills/eval-driven-prompt-tuning) | Beta | Raise an LLM pipeline's accuracy against a labelled eval set without touching the model or code |
-| [model-feasibility-study](skills/model-feasibility-study) | Beta | Run an empirical build-vs-buy / model-choice feasibility study backed by experiment |
+| [model-feasibility-study](skills/model-feasibility-study) | Stable | Run an empirical build-vs-buy / model-choice feasibility study backed by experiment |
 
 **Beta** means the skill is still being tested against real work and the steps may change —
-usable, but don't treat it as final. Each skill's own README and its SKILL.md's status line say so
-too.
+usable, but don't treat it as final. **Stable** means it's been run against enough real work that
+the steps are proven, though they can still be refined. Each skill's own README and its SKILL.md's
+status line say so too.
 
 ## Tool compatibility
 
@@ -56,6 +57,11 @@ This regenerates, from every `skills/*/SKILL.md`:
 The generated files are checked in at the repo root as a working example; re-run the script after
 editing any `SKILL.md` to keep them in sync.
 
+A skill may also ship an `assets/` directory — scripts that are easier to ship than to describe in
+prose. The adapters don't carry those files, only `SKILL.md`'s text, so a `SKILL.md` that relies on
+one has to say what to do when it isn't there. See
+[model-feasibility-study](skills/model-feasibility-study) for the pattern.
+
 **Any other tool / manual** — copy the body of a `SKILL.md` straight into your agent's system
 prompt or a chat message. It's self-contained and reads as a standalone prompt.
 
@@ -63,5 +69,7 @@ prompt or a chat message. It's self-contained and reads as a standalone prompt.
 
 1. `skills/<name>/SKILL.md` with `name:`/`description:` frontmatter and the instructions.
 2. `skills/<name>/README.md` — what it does, which tools it's verified on.
-3. `./adapters/build.sh` to regenerate the per-tool files.
-4. Optionally symlink it into `.claude/skills/<name>` for local Claude Code use.
+3. `skills/<name>/assets/` if it needs supporting scripts — optional, and `SKILL.md` must still
+   work without them.
+4. `./adapters/build.sh` to regenerate the per-tool files.
+5. Optionally symlink it into `.claude/skills/<name>` for local Claude Code use.
