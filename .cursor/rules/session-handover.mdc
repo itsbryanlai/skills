@@ -1,0 +1,6 @@
+---
+description: Write a copy-paste handover so a fresh agent session can pick up where this one leaves off, read-only until the user gives the green light. Use when the user wants to continue in a new session, asks for a handover, handoff, or "continue elsewhere" summary, or is about to clear or compact a long conversation they want to resume.
+alwaysApply: false
+---
+
+See @skills/session-handover/SKILL.md for the full instructions.
