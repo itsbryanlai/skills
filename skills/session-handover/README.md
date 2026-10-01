@@ -1,6 +1,6 @@
 # session-handover
 
-**Status: Beta** — new, still being tested against real session hand-offs, expect the steps to be refined.
+**Status: Stable** — run against enough real session hand-offs that the steps are proven, though they can still be refined.
 
 Write a copy-paste handover for continuing in a fresh session: background, current status, decisions
 and rejected paths, references, session preferences, next steps. The receiving agent is told to
