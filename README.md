@@ -23,16 +23,15 @@ Having the file in the right place isn't enough — a skill also has to work wit
 actually do. This is separate from the adapter setup below: the adapters get the instructions in
 front of the tool, but they don't grant capabilities.
 
-| Skill | Claude Code | Cursor | Windsurf | Copilot |
-|---|---|---|---|---|
-| [eval-driven-prompt-tuning](skills/eval-driven-prompt-tuning) | ✅ | ✅ | not evaluated | not evaluated |
-| [model-feasibility-study](skills/model-feasibility-study) | ✅ | ✅ | not evaluated | not evaluated |
-| [session-handover](skills/session-handover) | ✅ | not evaluated | not evaluated | not evaluated |
+| Skill | Claude Code | Cursor | Codex |
+|---|---|---|---|
+| [eval-driven-prompt-tuning](skills/eval-driven-prompt-tuning) | ✅ | ✅ | ✅ |
+| [model-feasibility-study](skills/model-feasibility-study) | ✅ | ✅ | ✅ |
+| [session-handover](skills/session-handover) | ✅ | not evaluated | ✅ |
 
-Windsurf and Copilot are left unmarked because they haven't been tried — that's a gap in testing,
-not a claim that either fails. The table only covers the tools actually tried; other well-known AI
-coding tools (OpenAI's Codex, xAI's Grok, etc.) aren't listed simply because they're untested, not
-because they're known to be incompatible.
+"not evaluated" is a gap in testing, not a claim that the skill fails. The table only covers the
+tools actually tried; other AI coding tools (Copilot, Windsurf, xAI's Grok, etc.) aren't listed
+simply because they're untested, not because they're known to be incompatible.
 
 ## Use it
 
@@ -41,26 +40,23 @@ because they're known to be incompatible.
 - add this repo as a plugin marketplace, if you set one up (not included here by default — this
   repo intentionally ships without a `plugin.json` so it stays usable outside Claude Code too).
 
-**Cursor, Copilot, Windsurf** — run the adapter build script, then commit or copy the generated
-files into your project:
+**Codex** — also reads `SKILL.md` natively. Symlink (or copy) `skills/<name>` into your project's
+`.agents/skills/`, or into `~/.agents/skills/` for every project. This repo's own `.agents/skills/`
+is a working example.
+
+**Cursor** — run the adapter build script, then commit or copy the generated files into your
+project:
 
 ```
 ./adapters/build.sh
 ```
 
-This regenerates, from every `skills/*/SKILL.md`:
-
-| Tool | Output |
-|---|---|
-| Cursor | `.cursor/rules/<name>.mdc` — thin, points at the canonical `SKILL.md` |
-| Copilot | `.github/copilot-instructions.md` — inlines every skill's body (Copilot has no file-include) |
-| Windsurf | `.windsurfrules` — same, inlined |
-
-The generated files are checked in at the repo root as a working example; re-run the script after
-editing any `SKILL.md` to keep them in sync.
+This regenerates `.cursor/rules/<name>.mdc` from every `skills/*/SKILL.md` — thin rules that point
+at the canonical file. They are checked in at the repo root as a working example; re-run the script
+after editing any `SKILL.md` to keep them in sync.
 
 A skill may also ship an `assets/` directory — scripts that are easier to ship than to describe in
-prose. The adapters don't carry those files, only `SKILL.md`'s text, so a `SKILL.md` that relies on
+prose. Copying only a `SKILL.md`'s text elsewhere loses those files, so a `SKILL.md` that relies on
 one has to say what to do when it isn't there. See
 [model-feasibility-study](skills/model-feasibility-study) for the pattern.
 
@@ -74,4 +70,5 @@ prompt or a chat message. It's self-contained and reads as a standalone prompt.
 3. `skills/<name>/assets/` if it needs supporting scripts — optional, and `SKILL.md` must still
    work without them.
 4. `./adapters/build.sh` to regenerate the per-tool files.
-5. Optionally symlink it into `.claude/skills/<name>` for local Claude Code use.
+5. Optionally symlink it into `.claude/skills/<name>` and `.agents/skills/<name>` for local Claude
+   Code and Codex use.
