@@ -5,7 +5,7 @@ description: Write a copy-paste handover so a fresh agent session can pick up wh
 
 # Session handover
 
-> **Status: Beta.** New — still being tested against real session hand-offs, expect refinements.
+> **Status: Stable.** Run against enough real session hand-offs that the steps are proven — still expect refinements.
 
 The reader is a fresh agent with **zero memory of this conversation** and no access to it. The
 handover is everything it will know. The user pastes it in as the first message.
