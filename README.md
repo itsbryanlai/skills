@@ -10,6 +10,7 @@ other tool gets a thin adapter generated from that file, not a rewrite.
 |---|---|---|
 | [eval-driven-prompt-tuning](skills/eval-driven-prompt-tuning) | Beta | Raise an LLM pipeline's accuracy against a labelled eval set without touching the model or code |
 | [model-feasibility-study](skills/model-feasibility-study) | Stable | Run an empirical build-vs-buy / model-choice feasibility study backed by experiment |
+| [session-handover](skills/session-handover) | Beta | Write a copy-paste handover so a new session can resume, read-only until you give the green light |
 
 **Beta** means the skill is still being tested against real work and the steps may change —
 usable, but don't treat it as final. **Stable** means it's been run against enough real work that
@@ -26,6 +27,7 @@ front of the tool, but they don't grant capabilities.
 |---|---|---|---|---|
 | [eval-driven-prompt-tuning](skills/eval-driven-prompt-tuning) | ✅ | ✅ | not evaluated | not evaluated |
 | [model-feasibility-study](skills/model-feasibility-study) | ✅ | ✅ | not evaluated | not evaluated |
+| [session-handover](skills/session-handover) | ✅ | not evaluated | not evaluated | not evaluated |
 
 Windsurf and Copilot are left unmarked because they haven't been tried — that's a gap in testing,
 not a claim that either fails. The table only covers the tools actually tried; other well-known AI
