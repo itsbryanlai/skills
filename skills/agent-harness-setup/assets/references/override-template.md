@@ -261,8 +261,11 @@ verdict and flags first. Cap command output.
 12. **Watch CI** (`gh pr checks --watch`); fix failures through a subagent;
     stop after three rounds and ask on the PR. Green = merge-ready. **Stop
     there. Never merge.**
-13. **Finish.** One `🤖 agent-loop` comment per issue with the PR link. Remove
-    the lock. One-line summary when nothing happened; notify only for a new
+13. **Finish.** One `🤖 agent-loop` comment per issue with the PR link. Run
+    `state.sh save` after the last GitHub write, but not when the run leaves
+    an action undone (a blocked push, a failed publish, a worker stopped by a
+    limit): the unsaved state makes the next run full, and it retries. Name
+    what is pending in the summary. Remove the lock. One-line summary when nothing happened; notify only for a new
     or updated PR, a failure, or a question for a human.
 
 ## 4. Subagent: feature workflow (`enhancement`)

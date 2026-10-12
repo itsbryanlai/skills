@@ -298,7 +298,8 @@ second setup measured an idle hourly run at about 1M input tokens by evening
   that one call. Put this first call in the automation prompt itself, so the
   model reads nothing before it. The first
   run of each local date is always full. Each run that acts ends with
-  `state.sh save`.
+  `state.sh save`, except a run that leaves an action undone (a blocked
+  push, a failed publish): it skips the save so the next run retries.
 - Codex: one hourly automation that opens a new chat per run (not a
   heartbeat attached to an existing chat). Claude Code desktop: an hourly
   local scheduled task. Elsewhere: an hourly cron that starts a new session.
