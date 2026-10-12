@@ -1,0 +1,13 @@
+
+# Personal agent harness (local only, never commit).
+# Keep in sync with HARNESS in .agent-loop/hooks/guard.sh. Never move these to .gitignore.
+/AGENTS.override.md
+/CLAUDE.local.md
+/.agent-loop/
+/.claude/skills/
+/.claude/agents/
+/.agents/skills/
+/.claude/settings.local.json
+# Spec Kit only, when chosen and untracked:
+# /.specify/
+# /specs

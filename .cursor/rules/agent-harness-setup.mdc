@@ -1,0 +1,6 @@
+---
+description: Set up a local, personal coding-agent harness for one or more repos - an unattended agent loop (orchestrator + subagents in git worktrees driven by GitHub issues), a project verification skill, a merge guard, and AGENTS.override.md / CLAUDE.local.md instructions - without committing anything to the repos. Use when the user asks to "set up the agent harness", "set up the agent loop", or to repeat an existing loop setup on another repo. Asks which workflow toolkit (pstack, Spec Kit, none, other) and verification approach to use; assumes neither. Not for one-off agent tasks or for changing a team's shared CI or repo settings.
+alwaysApply: false
+---
+
+See @skills/agent-harness-setup/SKILL.md for the full instructions.
