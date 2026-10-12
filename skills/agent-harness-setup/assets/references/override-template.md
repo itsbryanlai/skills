@@ -232,8 +232,8 @@ verdict and flags first. Cap command output.
    criteria, decisions made, verification scope, report path). The worker
    creates its report file first and fills it as it goes.
 8. **Wait, then answer questions** (section 6). Wait with one long
-   `wait_agent` call (15 minutes or more), not short polls: every wake
-   re-sends the whole chat. Message a worker only to answer a question or
+   `wait_agent` call (`timeout_ms: 900000`), never the 60000 default: every
+   wake re-sends the whole chat. Message a worker only to answer a question or
    return review findings.
 9. **Review each result:** diff traces to the issue; no local-only files;
    atomic commits and modular code (`git log --stat origin/main..HEAD`);
@@ -244,7 +244,8 @@ verdict and flags first. Cap command output.
    to the findings. Reviewers on the parent model add no model diversity, so
    one is enough.> Send failures back to the same subagent with
    `send_message`; spawn fresh only when it is gone.
-10. **Open the PR** (ready, not draft) in the repo's title style, with
+10. **Open the PR** (ready, not draft; push with `git -C <worktree> push`,
+    since a Codex hook does not see `workdir`) in the repo's title style, with
     `Closes #<n>`. No AI-attribution footers.
 11. **Publish the verification report.** <Variant PR comment: post the
     report Markdown as the PR comment.> <Variant Notion: upload each

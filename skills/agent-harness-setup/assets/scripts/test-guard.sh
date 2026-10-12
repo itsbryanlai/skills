@@ -37,4 +37,13 @@ t 2 "git push -u origin fix/4-x"
 t 2 "git -C $R push origin HEAD"
 git reset -q --hard HEAD~1
 t 0 "git push -u origin fix/4-x"
+
+# Orchestrator layout: the hook cwd is a main checkout on main, the branch lives in a worktree.
+git switch -q -C main origin/main && git worktree add -q "$T/wt" fix/4-x
+t 2 "git push -u origin fix/4-x"
+t 0 "git -C $T/wt push -u origin fix/4-x"
+t 0 "cd $T/wt && git push -u origin fix/4-x"
+t 0 "cd ../wt && git push -u origin fix/4-x"
+t 2 "cd $T/wt && git status; cd $R && git push"
+t 2 "git -C $T/wt status; git push"
 rm -rf "$T"

@@ -33,15 +33,27 @@ if grep -Eq 'git[[:space:]]+(-C[[:space:]]+[^[:space:]]+[[:space:]]+)?add[^|;&]*
 fi
 
 grep -Eq 'git[[:space:]].*(commit|push)' <<<"$cmd" || exit 0
+
+# Push from main: judge each push by the directory it runs in, not by every directory the
+# command mentions. Split the command at && || ; | and newlines, follow `cd X`, and prefer the
+# push's own `git -C X`; fall back to the hook cwd. (A main checkout's hook cwd must not block
+# `git -C <worktree> push`, and Codex does not pass exec_command's workdir to the hook.)
+abs() { local p=${1//\"/}; p=${p/#\~/$HOME}; [[ $p = /* ]] && echo "$p" || echo "$here/$p"; }
+here=$cwd
+while IFS= read -r seg; do
+  [[ $seg =~ ^[[:space:]\(]*cd[[:space:]]+(\"[^\"]+\"|[^[:space:]\)]+) ]] && here=$(abs "${BASH_REMATCH[1]}")
+  grep -Eq 'git[[:space:]]+(-C[[:space:]]+[^[:space:]]+[[:space:]]+)?push' <<<"$seg" || continue
+  t=$here
+  [[ $seg =~ git[[:space:]]+-C[[:space:]]+(\"[^\"]+\"|[^[:space:]]+) ]] && t=$(abs "${BASH_REMATCH[1]}")
+  current=$(git -C "$t" branch --show-current 2>/dev/null)
+  [[ "$current" = main || "$current" = master ]] && deny "push from $current. $NM"
+done < <(perl -pe 's/&&|\|\||[;|]/\n/g' <<<"$cmd")
+
 # Directories this command may act on: the hook cwd plus every `cd X` / `-C X` target.
 dirs=$( { echo "$cwd"; grep -Eo '(cd|-C)[[:space:]]+("[^"]+"|[^[:space:];&|]+)' <<<"$cmd" | sed -E 's/^(cd|-C)[[:space:]]+//; s/^"//; s/"$//'; } | sort -u)
 while IFS= read -r d; do
   [ -n "$d" ] && [ -d "$d" ] || continue
   git -C "$d" rev-parse --git-dir >/dev/null 2>&1 || continue
-  if grep -Eq 'git[[:space:]]+(-C[[:space:]]+[^[:space:]]+[[:space:]]+)?push' <<<"$cmd"; then
-    current=$(git -C "$d" branch --show-current)
-    [[ "$current" = main || "$current" = master ]] && deny "push from $current. $NM"
-  fi
   bad=$(git -C "$d" diff --cached --name-only | grep -E "$HARNESS" | head -3)
   [ -n "$bad" ] && deny "staged harness file(s) in $d: $(tr '\n' ' ' <<<"$bad")- unstage them. It $LOCAL"
   bad=$(git -C "$d" log --branches --not --remotes --name-only --format= 2>/dev/null | grep -E "$HARNESS" | sort -u | head -3)

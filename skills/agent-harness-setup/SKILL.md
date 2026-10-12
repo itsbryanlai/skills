@@ -254,9 +254,9 @@ Copy into each repo's `.agent-loop/`:
 Before you report done:
 
 1. Run `bash assets/scripts/test-guard.sh <repo>/.agent-loop/hooks/guard.sh`. It
-   builds a throwaway repo with a bare origin and checks 23 cases (merge,
+   builds a throwaway repo with a bare origin and checks 29 cases (merge,
    approval, push to main, issue assignment, force-add, staged harness file,
-   unpushed commit adding a harness file, and the allowed loop commands such
+   unpushed commit adding a harness file, worktree pushes from a main checkout, and the allowed loop commands such
    as an unassigned `gh issue create`). All must PASS. Then
    pipe a `git commit` check through the installed guard with each real repo
    as `cwd`; it must exit 0 (no false positive on the user's own branches).
