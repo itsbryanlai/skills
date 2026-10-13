@@ -394,6 +394,27 @@ orchestrator reviews it and publishes it (section 3 step 11).
 When the maintainer works with an agent directly, sections 0, 1 and 7 still
 apply, and so does the no-merge rule. Workflow phases run without gates only
 inside the loop; interactively, stop where the maintainer asks.
+
+In an interactive session the agent is both the subagent and the reviewer of
+section 7. A code change is not done until these steps are complete, unless
+the maintainer says to skip one:
+
+1. Drive every mapped feature the change touches with `verify-<app>`, through
+   every entry point the map lists. No ad-hoc drivers in place of the skill;
+   extend it.
+2. Capture before (PR base or `main`) and after evidence for every drive that
+   changes what a user sees.
+3. Add or update the touched feature files, and prove the new steps.
+4. Fill in the report template as `.agent-loop/reports/<branch-slug>.md`.
+5. Publishing is an outward action: ask first. If the branch already has a
+   published report (`<branch-slug>.notion` or a report comment), draft a
+   dated "Re-verification" section for it. To publish, read only the publish
+   step of `.agent-loop/orchestrator.md` (it is not loaded in interactive
+   sessions).
+6. In the final reply, list every step skipped and why.
+
+<If the repo's CLAUDE.md routes QA or testing to another skill, say that the
+verify skill takes precedence for verification.>
 ```
 
 ---
