@@ -256,7 +256,8 @@ verdict and flags first. Cap command output.
     beside the report as `<branch-slug>.notion`, and post a short PR comment:
     `🤖 agent-loop`, verdict, gate results, skipped items, report link. Fall
     back to the PR-comment variant if Notion is unreachable. A follow-up
-    round updates the same page.> Copy the report to the main checkout's
+    round updates the same page: a dated "Re-verification" section goes at
+    the top, newest first.> Copy the report to the main checkout's
     `.agent-loop/reports/`.
 12. **Watch CI** (`gh pr checks --watch`); fix failures through a subagent;
     stop after three rounds and ask on the PR. Green = merge-ready. **Stop
@@ -408,7 +409,8 @@ the maintainer says to skip one:
 4. Fill in the report template as `.agent-loop/reports/<branch-slug>.md`.
 5. Publishing is an outward action: ask first. If the branch already has a
    published report (`<branch-slug>.notion` or a report comment), draft a
-   dated "Re-verification" section for it. To publish, read only the publish
+   dated "Re-verification" section for the top of it (newest first, above
+   the earlier report). To publish, read only the publish
    step of `.agent-loop/orchestrator.md` (it is not loaded in interactive
    sessions).
 6. In the final reply, list every step skipped and why.
