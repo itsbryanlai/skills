@@ -167,6 +167,14 @@ repo, in parallel. Give each these requirements, which the loop depends on:
   var so a frontend worktree can test against a backend worktree.
 - Helpers: `launch`, `doctor`, `drive`, `cleanup` scripts; cleanup kills only
   what it started and keeps evidence.
+- **Screenshots**: capture the browser window, not the full page. An app
+  with a fixed-height shell turns full-page captures into tall, mostly blank
+  images, and Notion shrinks those. After each capture, compare the page's
+  scroll height with the window height; when the page is taller, record a
+  flag in the drive's result and print it. The report lists the flags: a
+  page that scrolls into blank space is an app layout bug. Notion's API
+  cannot set an image's display width, so crop to the element under test
+  when its text must be readable.
 - Proved once end to end before hand-over.
 
 Then prove it yourself from a real worktree (step 7). See

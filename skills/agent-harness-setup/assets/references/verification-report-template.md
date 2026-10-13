@@ -41,6 +41,7 @@ verified_at: <YYYY-MM-DDTHH:MM:SSZ>
 - <entry point>: <reason, e.g. live-skipped (cost), unreachable: needs X>
 
 ## Risks and follow-ups
+- Page-height flags (the drive's result `flags`): <none | step, page height vs window, and whether the page really scrolls into blank space>
 - <risk or follow-up>
 
 <!-- Evidence directory: .agent-loop/evidence/<run-id>/ -->
