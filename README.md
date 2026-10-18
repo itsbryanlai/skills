@@ -10,6 +10,7 @@ other tool gets a thin adapter generated from that file, not a rewrite.
 |---|---|---|
 | [agent-harness-setup](skills/agent-harness-setup) | Beta | Set up a local agent loop that turns assigned GitHub issues into reviewed PRs, without committing harness files |
 | [eval-driven-prompt-tuning](skills/eval-driven-prompt-tuning) | Beta | Raise an LLM pipeline's accuracy against a labelled eval set without touching the model or code |
+| [grow-on-x](skills/grow-on-x) | Beta | Coach follower growth on X (Twitter): profile, posts, replies, daily routine, analytics |
 | [model-feasibility-study](skills/model-feasibility-study) | Stable | Run an empirical build-vs-buy / model-choice feasibility study backed by experiment |
 | [session-handover](skills/session-handover) | Stable | Write a copy-paste handover so a new session can resume, read-only until you give the green light |
 
@@ -28,6 +29,7 @@ front of the tool, but they don't grant capabilities.
 |---|---|---|---|
 | [agent-harness-setup](skills/agent-harness-setup) | ✅ | not evaluated | ✅ |
 | [eval-driven-prompt-tuning](skills/eval-driven-prompt-tuning) | ✅ | ✅ | ✅ |
+| [grow-on-x](skills/grow-on-x) | not evaluated | not evaluated | not evaluated |
 | [model-feasibility-study](skills/model-feasibility-study) | ✅ | ✅ | ✅ |
 | [session-handover](skills/session-handover) | ✅ | not evaluated | ✅ |
 
